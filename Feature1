@@ -1,0 +1,28 @@
+TRANSACTION:
+
+To create a transaction, you must include an amount and either a payment method nonce or payment_method_token.
+
+result = PayMo.Transaction.sale({     
+"amount": "10.00",     
+"payment_method_nonce": nonce_from_the_client,     
+"options": {         
+"submit_for_settlement": True     
+} 
+})
+
+result = PayMo.Transaction.sale({     
+"payment_method_token": "the_token",     
+"amount": "10.00" })
+
+SETTLEMENT:
+
+1.	When creating a transaction, using the option.submit_for_settlement option.
+2.	Using Transaction.submit_for_settlement():
+result = PayMo.Transaction.submit_for_settlement
+("the_transaction_id")
+if
+result.is_success:
+settled_transaction = result.transaction
+else:
+print ("unverified: You've never had a transaction with this user before. Are you sure you would like to proceed with this payment?")
+If the transaction cannot be found, it will throw "unverified: You've never had a transaction with this user before. Are you sure you would like to proceed with this payment?"exception. The transaction must be authorized to settle.
