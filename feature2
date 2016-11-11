@@ -1,0 +1,7 @@
+result = PayMo.Transaction.submit_for_settlement
+("the_transaction_id")
+if
+result.is_success:
+settled_transaction = result.transaction
+else:
+print ("unverified: This user is not a friend or a "friend of a friend". Are you sure you would like to proceed with this payment?")
